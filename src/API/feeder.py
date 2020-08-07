@@ -1,20 +1,25 @@
 import machine
 
-class Feeder(Lightsensor,Pump):
+from src.API.pump import Pump
+from src.API.sensor import Sensor
 
-    def __init__(self):
-        Lightsensor().__init__()
-        Pump().__init__()
+
+class Feeder(Sensor, Pump):
+
+    def __init__(self, pin1, pin2, pin3):
+        Sensor.__init__(pin1)
+        Pump.__init__(pin2, pin3)
+        self.bvd = 0
 
     def algaeMeasure(self):
-        self.forward(x)
+        self.forward(self.bvd)
         self.measure()
-        self.backward(x)
+        self.backward(self.bvd)
 
     def musselMeasure(self):
-        self.backward(x)
+        self.backward(self.bvd)
         self.measure()
-        self.forward(x)
+        self.forward(self.bvd)
 
-    def feed(self,value):
+    def feed(self, value):
         self.forward(value)
