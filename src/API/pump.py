@@ -1,6 +1,6 @@
 import machine
 
-class Pump(Pump):
+class Pump():
 
     def __init__(self, pin1, pin2):
         self.dir = machine.Pin(pin1)
