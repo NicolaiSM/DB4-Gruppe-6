@@ -3,8 +3,9 @@ import machine
 
 class Sensor:
 
-    def __init__(self, pin, model=None):
+    def __init__(self, pin, id, model=None):
         # Setup ADC pin
+        self.id = id
         self.adc = machine.ADC(machine.Pin(pin))
         self.adc.atten(machine.ADC.ATTN_11DB)
         self.adc.width(machine.ADC.WIDTH_10BIT)
@@ -17,4 +18,5 @@ class Sensor:
 
     # Get measurement and use model
     def measure(self):
-        return self.model(self.adc.read())
+        return self.model(self.adc.read()), self.id
+
