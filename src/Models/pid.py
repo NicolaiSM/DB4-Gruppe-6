@@ -1,30 +1,24 @@
+import time
 
+class Pid():
 
-class Error:
-
-    def __init__(self):
-        self.list = []
-
-    def last(self):
-        return self.list[len(self.list)]
-
-    def diff(self):
-        pass
-
-    def sum(self, interval):
-        pass
-
-
-class Pid:
-
-    def __init__(self, p, i, d, interval):
+    def __init__(self, p, i, d, target, freq):
         self.p = p
         self.i = i
         self.d = d
-        self.interval = interval
+        self.target = target
+        self.freq = freq
 
-    def __call__(self, error):
-        return self.p * error.last() + self.i * error.diff() + self.d * error.sum(self.interval)
+    def __call__(self):
+        return self.p * data.last() + self.i * data.diff() + self.d * data.sum(self.target)
+
+    def func(self):
+
+        while True÷
+
+            time.sleep(self.freq)
+
+
 
 
 
