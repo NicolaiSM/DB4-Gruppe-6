@@ -1,23 +1,27 @@
 import time
 
-class Pid():
+from src.API.feeder import Feeder
+from src.Models.datastorage import Queue
 
-    def __init__(self, p, i, d, target, freq):
+
+class Pid:
+
+    def __init__(self, p, i, d, target):
         self.p = p
         self.i = i
         self.d = d
-        self.target = target
-        self.freq = freq
 
     def __call__(self):
-        return self.p * data.last() + self.i * data.diff() + self.d * data.sum(self.target)
+        return self.p * self.last() + self.i * self.diff() + self.d * self.sum()
 
-    def func(self):
+    def setP(self, p):
+        self.p = p
 
-        while True÷
+    def setI(self, i):
+        self.i = i
 
-            time.sleep(self.freq)
-
+    def setD(self, d):
+        self.d = d
 
 
 
