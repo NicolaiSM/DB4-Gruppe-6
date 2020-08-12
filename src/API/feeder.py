@@ -6,8 +6,8 @@ from src.API.sensor import Sensor
 
 class Feeder(Sensor, Pump):
 
-    def __init__(self, pin1, pin2, pin3):
-        Sensor.__init__(pin1)
+    def __init__(self, pin1, pin2, pin3, nummes):
+        Sensor.__init__(pin1, nummes)
         Pump.__init__(pin2, pin3)
         self.bvd = 0
 
