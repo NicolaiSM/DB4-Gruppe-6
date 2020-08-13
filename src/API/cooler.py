@@ -8,20 +8,23 @@ from src.Models.tempconversion import voltagetempconv
 class Cooler(Pump, Sensor):
 
     def __init__(self, pin1, pin2, pin3, pin4, pin5, nummes):
+        Pump.__init__(self, pin3, pin4)
+        Sensor.__init__(self, pin5, nummes, voltagetempconv)
         self.fan = machine.Pin(pin1, machine.Pin.OUT)
         self.cooler = machine.Pin(pin2, machine.Pin.OUT)
-        Pump.__init__(pin3, pin4)
-        Sensor.__init__(pin5, nummes, voltagetempconv)
+        self.fan_on()
+        self.v12()
+
 
     def fan_on(self):
-        self.fan.on()
-
-    def fan_off(self):
         self.fan.off()
 
+    def fan_off(self):
+        self.fan.on()
+
     def v5(self):
-        self.cooler.on()
+        self.cooler.off()
 
     def v12(self):
-        self.cooler.off()
+        self.cooler.on()
 
