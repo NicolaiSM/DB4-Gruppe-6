@@ -28,3 +28,20 @@ class Cooler(Pump, Sensor):
     def v12(self):
         self.cooler.off()
 
+    # Peltier 5V or 12V
+    def setVoltage(self, msg):
+        if msg == '12V':
+            self.v12()
+        else:
+            self.v5()
+
+    # Fan on or off
+    def setFan(self, msg):
+        if msg == 'ON':
+            self.fan_on()
+        else:
+            self.fan_off()
+
+
+
+
