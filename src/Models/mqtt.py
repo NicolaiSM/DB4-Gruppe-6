@@ -12,11 +12,6 @@ import os
 import sys
 
 
-
-
-
-
-
 class Mqtt:
     def __init__(self,
                  mqttapi,
