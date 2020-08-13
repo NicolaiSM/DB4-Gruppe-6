@@ -30,7 +30,7 @@ mqtt = Mqtt(mqttapi)
 
 temppid = Controlloop(2, True, lambda x: cooler.speed(coolpid(cooler.measure())))
 
-_thread.start_new_thread(mqtt(), ())
+_thread.start_new_thread(mqtt, ())
 _thread.start_new_thread(temppid, ())
 
 
