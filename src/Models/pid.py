@@ -18,13 +18,13 @@ class Pid(Queue):
         return self.p * self.last() + self.i * self.diff() + self.d * self.sum()
 
     def setP(self, p):
-        self.p = p
+        self.p = float(p)
 
     def setI(self, i):
-        self.i = i
+        self.i = float(i)
 
     def setD(self, d):
-        self.d = d
+        self.d = float(d)
 
 
 
