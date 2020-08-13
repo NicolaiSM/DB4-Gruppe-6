@@ -26,6 +26,8 @@ class Pid(Queue):
     def setD(self, d):
         self.d = float(d)
 
+    def setTarget(self, target):
+        self.target = target
 
 
 
