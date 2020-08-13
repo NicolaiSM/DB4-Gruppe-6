@@ -9,13 +9,13 @@ from src.Models.pid import Pid
 # Cooler pins
 fan_pin = 14
 cooler_pin = 13
-cool_pump_dir = 27
-cool_pump_step = 12
+feeder_pump_dir = 27
+feeder_pump_step = 12
 temp_sensor_pin = 32
 
 # Feeder pins
-feeder_pump_dir = 33
-feeder_pump_step = 15
+cool_pump_dir = 33
+cool_pump_step = 15
 
 
 cooler = Cooler(fan_pin, cooler_pin, cool_pump_dir, cool_pump_step, temp_sensor_pin, 10)
