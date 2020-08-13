@@ -17,7 +17,7 @@ class Mqtt:
                  mqttapi,
                  ADAFRUIT_IO_URL = b'io.adafruit.com',
                  ADAFRUIT_USERNAME = b'Dreambot',
-                 ADAFRUIT_IO_KEY = b'aio_NHOL62OFWkfrvNC1Li5AvL8rUO0L',
+                 ADAFRUIT_IO_KEY = b'aio_SjAn644jPvzXuyOOZYz0snAGkXKe',
                  mqtt_client_id = bytes('client_'+str(int.from_bytes(os.urandom(3), 'little')), 'utf-8'),
                  WIFI_SSID = 'Bendix',
                  WIFI_PASSWORD = 'DetVirkerIkke',
@@ -86,4 +86,4 @@ class Mqtt:
         try:
             self.mqttapi[topic](str(msg, 'utf-8'))
         except:
-            print("missing key in " + topic)
+            print("missing key in " + str(topic, 'utf-8'))
