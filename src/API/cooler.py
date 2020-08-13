@@ -17,14 +17,14 @@ class Cooler(Pump, Sensor):
 
 
     def fan_on(self):
-        self.fan.off()
-
-    def fan_off(self):
         self.fan.on()
 
+    def fan_off(self):
+        self.fan.off()
+
     def v5(self):
-        self.cooler.off()
+        self.cooler.on()
 
     def v12(self):
-        self.cooler.on()
+        self.cooler.off()
 
