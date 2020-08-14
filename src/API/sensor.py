@@ -31,4 +31,6 @@ class Sensor:
             error += (self.mes[i] - avg) ** 2
         stde = (math.sqrt(error/self.nummes))/math.sqrt(self.nummes)
 
-        return avg,  stde
+        print("measurement" + str(round(avg)))
+
+        return avg
