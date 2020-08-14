@@ -17,13 +17,15 @@ class Mqtt:
                  mqttapi,
                  ADAFRUIT_IO_URL = b'io.adafruit.com',
                  ADAFRUIT_USERNAME = b'Dreambot',
-                 ADAFRUIT_IO_KEY = b'aio_SjAn644jPvzXuyOOZYz0snAGkXKe',
+                 ADAFRUIT_IO_KEY = b'aio_fIpf58ZczwAjdr2QdtsGWjWXErVA',
                  mqtt_client_id = bytes('client_'+str(int.from_bytes(os.urandom(3), 'little')), 'utf-8'),
                  WIFI_SSID = 'Bendix',
                  WIFI_PASSWORD = 'DetVirkerIkke',
                  MAX_ATTEMPTS=20,
                  attempt_count = 0
                  ):
+
+        self.ADAFRUIT_USERNAME = ADAFRUIT_USERNAME
 
         self.mqttapi = mqttapi
 
@@ -61,18 +63,15 @@ class Mqtt:
         self.client.set_callback(self.cb)
 
         self.feednames = [b'Peltier Element',
-                          b'RPM',
                           b'Fan',
                           b'P',
                           b'I',
                           b'D',
-                          b'',
                           ]
 
         for feedname in self.feednames:
             txt = bytes('{:s}/feeds/{:s}'.format(ADAFRUIT_USERNAME, feedname), 'utf-8')
             self.client.subscribe(txt)
-            self.client.publish(bytes('{:s}/get'.format(txt), 'utf-8'), '\0')
 
     def __call__(self):
         try:
@@ -87,3 +86,19 @@ class Mqtt:
             self.mqttapi[topic](str(msg, 'utf-8'))
         except:
             print("missing key in " + str(topic, 'utf-8'))
+        finally:
+            print(topic)
+            print(msg)
+
+    def publish(self, topic, value):
+        try:
+            mqtt_feedname = bytes('{:s}/feeds/{:s}'.format(self.ADAFRUIT_USERNAME, topic), 'utf-8')
+            self.client.publish(mqtt_feedname, bytes(str(value), 'utf-8'), qos=0)
+        except KeyboardInterrupt:
+            print('Ctrl-C pressed...exiting')
+            self.client.disconnect()
+            sys.exit()
+        finally:
+            return value
+
+
