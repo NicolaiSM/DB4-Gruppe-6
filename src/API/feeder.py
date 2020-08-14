@@ -12,14 +12,19 @@ class Feeder(Sensor, Pump):
         self.bvd = 0
 
     def algaeMeasure(self):
+        # k is the number of rotations
         self.forward(self.bvd)
+        self.rotation(k)
         self.measure()
         self.backward(self.bvd)
 
     def musselMeasure(self):
+        # k is the number of rotations
         self.backward(self.bvd)
+        self.rotation(k)
         self.measure()
         self.forward(self.bvd)
 
     def feed(self, value):
-        self.forward(value)
+        self.forward(self.bvd)
+        self.rotation(value)
