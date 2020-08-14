@@ -11,13 +11,16 @@ ADC_MAX = 1023
 ADC_Vmax = 3.15
 
 def voltagetempconv(reading):
+    try:
+        raw_average = ADC_MAX * adc_V_lookup[round(reading)] / ADC_Vmax
 
-    raw_average = ADC_MAX * adc_V_lookup[round(reading)] / ADC_Vmax
+        resistance = (SER_RES * raw_average) / (ADC_MAX - raw_average)
 
-    resistance = (SER_RES * raw_average) / (ADC_MAX - raw_average)
+        steinhart = log(resistance / NOM_RES) / THERM_B_COEFF
+        steinhart += 1.0 / (TEMP_NOM + 273.15)
+        steinhart = (1.0 / steinhart) - 273.15
+    except Exception as e:
+        print(e)
 
-    steinhart = log(resistance / NOM_RES) / THERM_B_COEFF
-    steinhart += 1.0 / (TEMP_NOM + 273.15)
-    steinhart = (1.0 / steinhart) - 273.15
-
-    return steinhart
+    finally:
+        return steinhart
