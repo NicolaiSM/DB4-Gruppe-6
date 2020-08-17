@@ -15,14 +15,14 @@ import sys
 class Mqtt:
     def __init__(self,
                  mqttapi,
-                 ADAFRUIT_IO_URL = b'io.adafruit.com',
-                 ADAFRUIT_USERNAME = b'Dreambot',
-                 ADAFRUIT_IO_KEY = b'aio_fIpf58ZczwAjdr2QdtsGWjWXErVA',
-                 mqtt_client_id = bytes('client_'+str(int.from_bytes(os.urandom(3), 'little')), 'utf-8'),
-                 WIFI_SSID = 'Bendix',
-                 WIFI_PASSWORD = 'DetVirkerIkke',
+                 ADAFRUIT_IO_URL=b'io.adafruit.com',
+                 ADAFRUIT_USERNAME=b'Dreambot',
+                 ADAFRUIT_IO_KEY=b'aio_OXzV507xu9Od0J7uMXSEXm0OxCNU',
+                 mqtt_client_id=bytes('client_' + str(int.from_bytes(os.urandom(3), 'little')), 'utf-8'),
+                 WIFI_SSID='Bendix',
+                 WIFI_PASSWORD='DetVirkerIkke',
                  MAX_ATTEMPTS=20,
-                 attempt_count = 0
+                 attempt_count=0
                  ):
 
         self.ADAFRUIT_USERNAME = ADAFRUIT_USERNAME
@@ -30,10 +30,10 @@ class Mqtt:
         self.mqttapi = mqttapi
 
         self.client = MQTTClient(client_id=mqtt_client_id,
-                        server=ADAFRUIT_IO_URL,
-                        user=ADAFRUIT_USERNAME,
-                        password=ADAFRUIT_IO_KEY,
-                        ssl=False)
+                                 server=ADAFRUIT_IO_URL,
+                                 user=ADAFRUIT_USERNAME,
+                                 password=ADAFRUIT_IO_KEY,
+                                 ssl=False)
 
         # turn off the WiFi Access Point
         self.ap_if = network.WLAN(network.AP_IF)
@@ -84,7 +84,8 @@ class Mqtt:
     def cb(self, topic, msg):
         try:
             self.mqttapi[topic](str(msg, 'utf-8'))
-        except:
+        except Exception as e:
+            print(e)
             print("missing key in " + str(topic, 'utf-8'))
         finally:
             print(topic)
@@ -100,5 +101,3 @@ class Mqtt:
             sys.exit()
         finally:
             return value
-
-
