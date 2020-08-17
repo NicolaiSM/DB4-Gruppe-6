@@ -7,9 +7,9 @@ from src.API.sensor import Sensor
 class Feeder(Sensor, Pump, Led):
 
     def __init__(self, pin1, pin2, pin3, pin4, nummes):
-        Sensor.__init__(pin1, nummes)
-        Pump.__init__(pin2, pin3)
-        Led.__init__(pin4)
+        Sensor.__init__(self, pin1, nummes)
+        Pump.__init__(self, pin2, pin3)
+        Led.__init__(self, pin4)
         self.bvd = 0
 
     def algaeMeasure(self):
