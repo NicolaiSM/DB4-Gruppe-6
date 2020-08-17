@@ -21,7 +21,7 @@ feeder_led = 26
 
 cooler = Cooler(cooler_fan, cooler_cool, cooler_pump_dir, cooler_pump_step, cooler_sensor, 50)
 coolpid = Pid(755, 220, 425, 20, 18)
-feed = Feeder(34)
+feed = Feeder(feeder_sensor, feeder_pump_dir, feeder_pump_step, feeder_led, 20)
 
 
 mqttapi = {b'Dreambot/feeds/Peltier Element': cooler.setVoltage,
@@ -35,11 +35,11 @@ mqtt = Mqtt(mqttapi)
 
 
 def coolfunc():
-    return cooler.speed(mqtt.publish("RPM", coolpid(mqtt.publish("TempRead", cooler.measure()))))
+    cooler.speed(mqtt.publish("RPM", coolpid(mqtt.publish("TempRead", cooler.measure()))))
 
 
 def feederfunc():
-    return None
+    feed.feed(6)
 
 
 mqttloop = Controlloop(3, _thread.allocate_lock(), mqtt)
