@@ -28,7 +28,7 @@ class Pump:
     def speed(self, value):
         self.pwm.freq(int(value))
 
-    def revs(self, revs):
+    def rotation(self, revs):
         for j in range(revs):
             print(j)
             for i in range(3200):
