@@ -15,7 +15,6 @@ class Cooler(Pump, Sensor):
         self.fan_on()
         self.v12()
 
-
     def fan_on(self):
         self.fan.on()
 
@@ -41,7 +40,3 @@ class Cooler(Pump, Sensor):
             self.fan_on()
         else:
             self.fan_off()
-
-
-
-

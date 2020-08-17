@@ -13,11 +13,11 @@ class Pump:
 
     def forward(self):
         self.dir.on()
-        self.pwm.duty(self.duty_on)
+        self.pwm.duty(self.duty_off)
 
     def backward(self):
         self.dir.off()
-        self.pwm.duty(self.duty_on)
+        self.pwm.duty(self.duty_off)
 
     def off(self):
         self.pwm.duty(self.duty_off)
@@ -26,13 +26,12 @@ class Pump:
         pass
 
     def speed(self, value):
+        self.pwm.duty(self.duty_on)
         self.pwm.freq(int(value))
 
     def rotation(self, revs):
         for j in range(revs):
-            print(j)
             for i in range(3200):
-                print(i)
                 self.pin.on()
                 self.pin.off()
                 time.sleep(1 / 3200)
