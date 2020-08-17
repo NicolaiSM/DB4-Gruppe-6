@@ -8,29 +8,31 @@ class Pid(Queue):
 
     def __init__(self, p, i, d, size, target):
         Queue.__init__(self, size)
-        self.p = p
-        self.i = i
-        self.d = d
+        self.pid = {"p": p, "i": i, "d": d}
         self.target = target
 
     def __call__(self, other):
-        self.add(other-self.target)
-        return self.p * self.last() + self.i * self.diff() + self.d * self.sum()
+        error = other-self.target
+        self.add(error)
+        print(self.pid)
+        print("ERROR" + str(error))
+        y = self.pid["p"] * self.last() + self.pid["i"] * self.sum() + self.pid["d"] * self.diff()
 
-    def setP(self, p):
-        self.p = float(p)
+        print("freq" + str(y))
 
-    def setI(self, i):
-        self.i = float(i)
+        if y>=29000:
+            return 29000
 
-    def setD(self, d):
-        self.d = float(d)
+        return y
 
-    def setTarget(self, target):
-        self.target = target
+    def setp(self, p):
+        self.pid["p"] = float(p)
 
+    def seti(self, i):
+        self.pid["i"] = float(i)
 
+    def setd(self, d):
+        self.pid["d"] = float(d)
 
-
-
-
+    def settarget(self, target):
+        self.target = float(target)
