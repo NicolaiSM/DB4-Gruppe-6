@@ -33,5 +33,6 @@ class Pump:
         for j in range(revs):
             for i in range(3200):
                 self.pin.on()
+                time.sleep((1 / 3200)/2)
                 self.pin.off()
-                time.sleep(1 / 3200)
+                time.sleep((1 / 3200)/2)
