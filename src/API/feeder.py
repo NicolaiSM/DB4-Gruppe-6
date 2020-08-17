@@ -1,4 +1,3 @@
-import machine
 
 from src.API.led import Led
 from src.API.pump import Pump
@@ -13,14 +12,15 @@ class Feeder(Sensor, Pump, Led):
         Led.__init__(pin4)
         self.bvd = 0
 
-
     def algaeMeasure(self):
         # k is the number of rotations
-
-        self.measure()
+        self.forward()
+        self.rotation(self.bvd)
+        mes = self.measure()
         self.backward()
-        self.rotation()
+        self.rotation(self.bvd)
+        return mes
 
     def feed(self, value):
         self.forward()
-        self.rotation(value)
+        self.rotation(value + self.bvd)
