@@ -17,3 +17,12 @@ class Controlloop:
 
     def setfreq(self, freq):
         self.freq = freq
+
+
+
+
+
+
+
+
+

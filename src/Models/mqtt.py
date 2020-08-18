@@ -17,7 +17,7 @@ class Mqtt:
                  mqttapi,
                  ADAFRUIT_IO_URL=b'io.adafruit.com',
                  ADAFRUIT_USERNAME=b'Dreambot',
-                 ADAFRUIT_IO_KEY=b'aio_OXzV507xu9Od0J7uMXSEXm0OxCNU',
+                 ADAFRUIT_IO_KEY=b'aio_AdWB65gxoBGd08a7ja2Ws0DJr1WJ',
                  mqtt_client_id=bytes('client_' + str(int.from_bytes(os.urandom(3), 'little')), 'utf-8'),
                  WIFI_SSID='Bendix',
                  WIFI_PASSWORD='DetVirkerIkke',

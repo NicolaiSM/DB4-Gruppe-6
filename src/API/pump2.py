@@ -1,13 +1,11 @@
 import machine
-import utime
 
 
-class Pump:
+class Pump2:
 
     def __init__(self, pin1, pin2):
         self.pwm = machine.PWM(machine.Pin(pin2))
         self.dir = machine.Pin(pin1, machine.Pin.OUT)
-        self.pin = machine.Pin(pin2, machine.Pin.OUT)
         self.duty_on = 1
         self.duty_off = 0
 
@@ -28,10 +26,3 @@ class Pump:
     def speed(self, value):
         self.pwm.duty(self.duty_on)
         self.pwm.freq(int(value))
-
-    def rotation(self, vol):
-        for j in range((vol/0.26)*1600):
-            self.pin.on()
-            utime.sleep_us(90)
-            self.pin.off()
-            utime.sleep_us(90)

@@ -1,14 +1,15 @@
 import machine
 
 from src.API.pump import Pump
+from src.API.pump2 import Pump2
 from src.API.sensor import Sensor
 from src.Models.tempconversion import voltagetempconv
 
 
-class Cooler(Pump, Sensor):
+class Cooler(Pump2, Sensor):
 
     def __init__(self, pin1, pin2, pin3, pin4, pin5, nummes):
-        Pump.__init__(self, pin3, pin4)
+        Pump2.__init__(self, pin3, pin4)
         Sensor.__init__(self, pin5, nummes, voltagetempconv)
         self.fan = machine.Pin(pin1, machine.Pin.OUT)
         self.cooler = machine.Pin(pin2, machine.Pin.OUT)
